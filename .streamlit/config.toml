@@ -1,0 +1,24 @@
+[theme]
+base="dark"
+primaryColor="#153f8a"
+
+[client]
+caching = true
+displayEnabled = true
+showErrorDetails = false
+
+[runner]
+installTracer = true
+fastReruns = true
+
+[server]
+runOnSave = true
+port = 7000
+baseUrlPath = "home"
+maxUploadSize = 1024
+maxMessageSize = 1024
+enableWebsocketCompression = true
+
+[browser]
+serverAddress = "127.0.0.1"
+gatherUsageStats = true

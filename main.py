@@ -1,3 +1,4 @@
+import time
 import streamlit as sl
 import plotly.express as px
 from backend import get_data as gd
@@ -10,23 +11,39 @@ days = sl.slider("Forecast days",
                  help="Select the number of forecasted days ")
 view_option = sl.selectbox("Select data to view",
                            options=("Temperature", "Sky"))
+units = sl.selectbox("Select units", options=("Celsius", "Fahrenheit"))
 sl.subheader(f"{view_option} for the next {days} days in {place}")
 
 try:
     if place:
-        filtered_data = gd(place, days, view_option)
+        filtered_data = gd(place, days, units)
         if view_option == "Temperature":
-            temperatures = [dict["main"]["temp"] / 10 for dict in filtered_data]
-            dates = [dict["dt_txt"] for dict in filtered_data]
+            temperatures = [dictio["main"]["temp"] for dictio in
+                            filtered_data]
+            dates = [dictio["dt_txt"] for dictio in filtered_data]
             figure = px.line(x=dates, y=temperatures,
-                             labels={"x": "Date", "y": "Temperature (""Celsius)"})
-            sl.plotly_chart(figure)
+                             labels={"x": "Date", "y": "Temperature ("
+                                                       "Celsius)"})
+            with sl.expander("Expand to show chart", False):
+                with sl.spinner("Please wait"):
+                    time.sleep(3)
+                    sl.balloons()
+                    sl.success("Forecast found")
+                    sl.plotly_chart(figure)
         else:
             images = {"Clear": "images/sun.png", "Clouds": "images/clouds.png",
                       "Rain": "images/rains.png", "Snow": "images/snow.png"}
-            sky_conditons = [dict["weather"][0]["main"] for dict in filtered_data]
-            image_paths = [images[condition] for condition in sky_conditons]
-            sl.image(image_paths, width=115)
+            sky_conditions = [dictio["weather"][0]["main"] for dictio in
+                              filtered_data]
+            image_paths = [images[condition] for condition in sky_conditions]
+            with sl.expander("Expand to show chart", False):
+                with sl.spinner("Please wait"):
+                    time.sleep(3)
+                    sl.balloons()
+                    time.sleep(1)
+                    sl.success("Forecast found")
+                    sl.image(image_paths, width=115)
 
 except KeyError:
-    sl.info("The place you entered does not exist. Please enter a valid place")
+    sl.info("The place you entered does not exist. Please enter a valid "
+            "place")
