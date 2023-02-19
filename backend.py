@@ -1,7 +1,8 @@
 import requests
 import streamlit as sl
+import os
 
-API_KEY = "69783da471cac5b22c854c721bc1a41b"
+API_KEY = os.getenv("API_KEY")
 
 
 @sl.cache(ttl=3600)
