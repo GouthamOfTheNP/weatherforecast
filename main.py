@@ -11,7 +11,8 @@ days = sl.slider("Forecast days",
                  help="Select the number of forecasted days ")
 view_option = sl.selectbox("Select data to view",
                            options=("Temperature", "Sky"))
-units = sl.selectbox("Select units", options=("Celsius", "Fahrenheit"))
+if view_option == "Temperature":
+    units = sl.selectbox("Select units", options=("Celsius", "Fahrenheit"))
 sl.subheader(f"{view_option} for the next {days} days in {place}")
 
 try:
