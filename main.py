@@ -44,7 +44,7 @@ try:
                     sl.success("Forecast found")
                     sl.image(image_paths, width=115)
 
-except KeyError as e:
+except ArithmeticError as e:
     sl.error(e);
     sl.error("The place you entered does not exist. Please enter a valid "
             "place")
