@@ -2,7 +2,6 @@ import time
 import streamlit as sl
 import plotly.express as px
 from backend import get_data as gd
-import backend
 
 sl.set_page_config(page_title="Weather Forecast", page_icon="download.png")
 sl.title("Weather Forecast App")
