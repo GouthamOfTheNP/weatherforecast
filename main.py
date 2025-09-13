@@ -46,6 +46,5 @@ try:
                     sl.image(image_paths, width=115)
 
 except KeyError:
-    sl.info(backend.data_global)
     sl.error("The place you entered does not exist. Please enter a valid "
             "place")
