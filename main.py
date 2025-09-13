@@ -17,8 +17,8 @@ sl.subheader(f"{view_option} for the next {days} days in {place}")
 
 try:
     if place:
-        filtered_data = gd(place, days, units)
         if view_option == "Temperature":
+            filtered_data = gd(place, days, units)
             temperatures = [dictio["main"]["temp"] for dictio in
                             filtered_data]
             dates = [dictio["dt_txt"] for dictio in filtered_data]
@@ -30,6 +30,7 @@ try:
                     sl.success("Forecast found")
                     sl.plotly_chart(figure)
         else:
+            filtered_data = gd(place, days)
             images = {"Clear": "images/sun.png", "Clouds": "images/clouds.png",
                       "Rain": "images/rains.png", "Snow": "images/snow.png"}
             sky_conditions = [dictio["weather"][0]["main"] for dictio in
