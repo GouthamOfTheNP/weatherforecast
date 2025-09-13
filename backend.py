@@ -5,9 +5,6 @@ import os
 API_KEY = os.getenv("API_KEY")
 
 
-@sl.cache(ttl=3600)
-@sl.experimental_memo
-@sl.experimental_memo
 def get_data(place, forecast_days=None, kind="Celsius"):
 	if kind == "Celsius":
 		url = f"https://api.openweathermap.org/data/2.5/forecast?q=" \
