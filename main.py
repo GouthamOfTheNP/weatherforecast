@@ -27,7 +27,6 @@ try:
                                                        "Celsius)"})
             with sl.expander("Expand to show chart", False):
                 with sl.spinner("Please wait"):
-                    sl.success("Forecast found")
                     sl.plotly_chart(figure)
         else:
             filtered_data = gd(place, days)
@@ -38,7 +37,6 @@ try:
             image_paths = [images[condition] for condition in sky_conditions]
             with sl.expander("Expand to show chart", False):
                 with sl.spinner("Please wait"):
-                    sl.success("Forecast found")
                     sl.image(image_paths, width=115)
 
 except KeyError:
