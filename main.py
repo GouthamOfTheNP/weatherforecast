@@ -26,8 +26,6 @@ try:
                                                        "Celsius)"})
             with sl.expander("Expand to show chart", False):
                 with sl.spinner("Please wait"):
-                    time.sleep(3)
-                    sl.balloons()
                     sl.success("Forecast found")
                     sl.plotly_chart(figure)
         else:
@@ -38,9 +36,6 @@ try:
             image_paths = [images[condition] for condition in sky_conditions]
             with sl.expander("Expand to show chart", False):
                 with sl.spinner("Please wait"):
-                    time.sleep(3)
-                    sl.balloons()
-                    time.sleep(1)
                     sl.success("Forecast found")
                     sl.image(image_paths, width=115)
 
