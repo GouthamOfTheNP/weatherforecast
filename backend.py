@@ -4,7 +4,7 @@ import os
 
 API_KEY = os.getenv("API_KEY")
 
-data_global = ""
+
 def get_data(place, forecast_days=None, kind="Celsius"):
 	if kind == "Celsius":
 		url = f"https://api.openweathermap.org/data/2.5/forecast?q=" \
@@ -14,7 +14,6 @@ def get_data(place, forecast_days=None, kind="Celsius"):
 		      f"{place}&appid={API_KEY}&units=imperial"
 	response = requests.get(url)
 	data = response.json()
-	data_global = data
 	filtered_data = data["list"]
 	nr_values = 8 * forecast_days
 	filtered_data = filtered_data[:nr_values]
